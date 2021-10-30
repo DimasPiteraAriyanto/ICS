@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="index.php" method="POST" id="test-form" onclick="jsRESTClientPOST()">
+        PegawaiID
+        <input type="text" id="PegawaiID" name="PegawaiID">
+        Nama PegawaiID
+        <input type="text" id="PegawaiName" name="PegawaiName">
+        <input id="tambah" type="submit" value="save" name="tambah">
+        
+    </form>
+
+<script src="js/script.js"></script>
+<script>
+    var testForm = document.getElementById('test-form');
+    testForm.onsubmit = function(event) {
+      event.preventDefault();
+  
+      var request = new XMLHttpRequest();
+      // POST to httpbin which returns the POST data as JSON
+      request.open('POST', 'https://hidok.co.id/hidok/api/Pegawai/Save', /* async = */ false);
+  
+      var formData = new FormData(document.getElementById('test-form'));
+      request.send(formData);
+  
+      console.log(request.response);
+    }
+</script>  
+</body>
+</html>
